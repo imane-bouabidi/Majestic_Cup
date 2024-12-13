@@ -1,5 +1,6 @@
 package com.wora.MajesticCup.entities;
 
+import com.wora.MajesticCup.entities.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
