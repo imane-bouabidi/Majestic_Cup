@@ -15,14 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @Document(collection = "users")
 public class User {
-
     @Id
-    private Long id;
+    private String id;
     private String username;
     private String password;
-
-    @DBRef
-    private List<Role> roles;
+    private Role role;
 }
 
 

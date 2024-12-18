@@ -1,6 +1,8 @@
 package com.wora.MajesticCup.entities;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -8,10 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document(collection = "matches")
 public class Match {
-    private Long id;
+    @Id
+    private String id;
     private int round;
     private Team team1;
     private Team team2;
+    @DBRef
     private Result result;
     private Team winner;
 }

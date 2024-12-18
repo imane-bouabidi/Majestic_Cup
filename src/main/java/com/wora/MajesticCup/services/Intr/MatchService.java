@@ -5,6 +5,8 @@ import com.wora.MajesticCup.dtos.Match.MatchDTO;
 import com.wora.MajesticCup.dtos.Match.UpdateMatchDTO;
 import com.wora.MajesticCup.entities.Match;
 import com.wora.MajesticCup.services.GenericService;
+import org.springframework.stereotype.Service;
 
-public interface MatchService extends GenericService<CreateMatchDTO, UpdateMatchDTO, MatchDTO, Match> {
+@Service
+public interface MatchService extends GenericService<CreateMatchDTO, UpdateMatchDTO, MatchDTO, Long> {
 }

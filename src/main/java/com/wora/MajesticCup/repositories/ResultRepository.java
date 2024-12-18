@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface ResultRepository extends MongoRepository<Result, Long> {
-    List<Result> findByMatchId(Long matchId);
-    List<Result> findByPlayerId(Long playerId);
+//    List<Result> findByMatchId(Long matchId);
+//    List<Result> findByPlayerId(Long playerId);
 }
