@@ -7,5 +7,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface CompetitionService extends GenericService<CreateCompetitionDTO, UpdateCompetitionDTO, CompetitionDTO, Long> {
+public interface CompetitionService extends GenericService<CreateCompetitionDTO, UpdateCompetitionDTO, CompetitionDTO, String> {
 }

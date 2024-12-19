@@ -8,5 +8,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface RoundService extends GenericService<CreateRoundDTO, UpdateRoundDTO, RoundDTO, Long> {
+public interface RoundService extends GenericService<CreateRoundDTO, UpdateRoundDTO, RoundDTO, String> {
 }

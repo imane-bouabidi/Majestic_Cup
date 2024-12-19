@@ -7,5 +7,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface StatisticsService extends GenericService<CreateStatisticsDTO, UpdateStatisticsDTO, StatisticsDTO, Long> {
+public interface StatisticsService extends GenericService<CreateStatisticsDTO, UpdateStatisticsDTO, StatisticsDTO, String> {
 }

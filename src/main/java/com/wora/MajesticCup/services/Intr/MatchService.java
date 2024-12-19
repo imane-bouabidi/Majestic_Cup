@@ -8,5 +8,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface MatchService extends GenericService<CreateMatchDTO, UpdateMatchDTO, MatchDTO, Long> {
+public interface MatchService extends GenericService<CreateMatchDTO, UpdateMatchDTO, MatchDTO, String> {
 }

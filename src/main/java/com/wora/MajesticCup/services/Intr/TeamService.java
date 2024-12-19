@@ -8,5 +8,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface TeamService extends GenericService<CreateTeamDTO, UpdateTeamDTO, TeamDTO, Long> {
+public interface TeamService extends GenericService<CreateTeamDTO, UpdateTeamDTO, TeamDTO, String> {
 }

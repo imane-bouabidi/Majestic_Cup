@@ -8,5 +8,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface ResultService extends GenericService <CreateResultDTO, UpdateResultDTO, ResultMapper, Long>{
+public interface ResultService extends GenericService <CreateResultDTO, UpdateResultDTO, ResultMapper, String>{
 }

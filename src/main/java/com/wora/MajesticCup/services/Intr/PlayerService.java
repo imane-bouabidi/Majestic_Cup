@@ -8,5 +8,5 @@ import com.wora.MajesticCup.services.GenericService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface PlayerService extends GenericService<CreatePlayerDTO, UpdatePlayerDTO, PlayerDTO, Long> {
+public interface PlayerService extends GenericService<CreatePlayerDTO, UpdatePlayerDTO, PlayerDTO, String> {
 }
