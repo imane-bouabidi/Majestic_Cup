@@ -9,6 +9,8 @@ import lombok.*;
 @Setter
 public class UpdateResultDTO {
     @NotNull
+    String id;
+    @NotNull
     private String matchId;
     @NotNull
     private int scoreTeam1;

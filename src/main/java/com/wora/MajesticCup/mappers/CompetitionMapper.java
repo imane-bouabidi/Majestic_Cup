@@ -7,5 +7,9 @@ import com.wora.MajesticCup.entities.Competition;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface CompetitionMapper extends GenericMapper<CreateCompetitionDTO, UpdateCompetitionDTO, CompetitionDTO, Competition> {
+public interface CompetitionMapper {
+    CompetitionDTO toDTO(Competition entity);
+    Competition toEntity(CompetitionDTO dto);
+    Competition toEntity(CreateCompetitionDTO dto);
+    Competition toEntity(UpdateCompetitionDTO updateDto);
 }

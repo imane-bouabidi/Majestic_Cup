@@ -22,7 +22,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public PlayerDTO save(CreatePlayerDTO createPlayerDTO) {
-        Player player = playerMapper.CreateToEntity(createPlayerDTO);
+        Player player = playerMapper.toEntity(createPlayerDTO);
         Player savedPlayer = playerRepository.save(player);
         return playerMapper.toDTO(savedPlayer);
     }

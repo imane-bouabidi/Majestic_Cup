@@ -27,7 +27,7 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     @Override
     public CompetitionDTO save(CreateCompetitionDTO createCompetitionDTO) {
-        Competition competition = competitionMapper.CreateToEntity(createCompetitionDTO);
+        Competition competition = competitionMapper.toEntity(createCompetitionDTO);
         Competition savedCompetition = competitionRepository.save(competition);
         return competitionMapper.toDTO(savedCompetition);
     }

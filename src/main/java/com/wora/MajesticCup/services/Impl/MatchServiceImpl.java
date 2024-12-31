@@ -30,7 +30,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public MatchDTO save(CreateMatchDTO createMatchDTO) {
-        Match match = matchMapper.CreateToEntity(createMatchDTO);
+        Match match = matchMapper.toEntity(createMatchDTO);
         Match savedMatch = matchRepository.save(match);
         return matchMapper.toDTO(savedMatch);
     }
