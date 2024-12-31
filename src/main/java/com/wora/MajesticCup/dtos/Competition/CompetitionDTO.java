@@ -1,22 +1,21 @@
 package com.wora.MajesticCup.dtos.Competition;
 
-import com.wora.MajesticCup.entities.Round;
-import com.wora.MajesticCup.entities.Team;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
-@Data
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CompetitionDTO {
-
-    private Long id;
-    @NonNull
+    private String id;
     private String name;
     private int numberOfTeams;
-    @NonNull
-    private Round currentRound;
-    private List<Round> rounds;
+    private List<String> teamsIds;
+    private String currentRoundId;
+    private List<String> roundsIds;
 }
