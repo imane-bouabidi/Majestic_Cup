@@ -102,11 +102,6 @@ public class AdminController {
         return ResponseEntity.ok("supprimé");
     }
 
-    @PostMapping("/results")
-    public ResponseEntity<ResultDTO> createResult(@RequestBody @Valid CreateResultDTO createResultDTO) {
-        return ResponseEntity.ok(resultService.save(createResultDTO));
-    }
-
     @GetMapping("/results/{id}")
     public ResponseEntity<ResultDTO> findResultById(@PathVariable String id) {
         return ResponseEntity.ok(resultService.findById(id));

@@ -2,6 +2,7 @@ package com.wora.MajesticCup.config;
 
 import com.wora.MajesticCup.security.JwtAuthenticationFilter;
 //import com.wora.MajesticCup.security.JwtAuthorizationFilter;
+import com.wora.MajesticCup.security.JwtTokenProvider;
 import com.wora.MajesticCup.services.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 //    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final UserDetailsService userDetailsService;
+    private final JwtTokenProvider JwtTokenProvider;
 
 
     @Bean
@@ -37,11 +39,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/operator/**").hasRole("OPERATOR")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/operator/**").hasRole("OPERATOR")
                         .anyRequest().authenticated()).
                 httpBasic(Customizer.withDefaults())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtAuthenticationFilter(JwtTokenProvider,userDetailsService),UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

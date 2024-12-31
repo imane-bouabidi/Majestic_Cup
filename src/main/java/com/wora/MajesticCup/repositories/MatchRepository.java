@@ -3,8 +3,9 @@ package com.wora.MajesticCup.repositories;
 import com.wora.MajesticCup.entities.Match;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MatchRepository extends MongoRepository<Match, String> {
 }
 
