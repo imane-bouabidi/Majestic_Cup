@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CompetitionService extends GenericService<CreateCompetitionDTO, UpdateCompetitionDTO, CompetitionDTO, String> {
+    CompetitionDTO findById(String id);
 }

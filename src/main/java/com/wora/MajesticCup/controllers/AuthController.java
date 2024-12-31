@@ -27,7 +27,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        String token = jwtTokenProvider.generateToken(username);
+        String token = userServiceImpl.login(username, password);
         return ResponseEntity.ok("Bearer " + token);
     }
 }

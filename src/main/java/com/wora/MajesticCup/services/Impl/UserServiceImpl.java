@@ -7,6 +7,7 @@ import com.wora.MajesticCup.dtos.User.UserDTO;
 import com.wora.MajesticCup.entities.User;
 import com.wora.MajesticCup.mappers.UserMapper;
 import com.wora.MajesticCup.repositories.UserRepository;
+import com.wora.MajesticCup.security.JwtTokenProvider;
 import com.wora.MajesticCup.services.Intr.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepo;
     private final CustomPasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public UserDTO save(CreateUserDTO dto){
         User user = userMapper.toEntity(dto);
@@ -53,6 +55,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return userMapper.toDTO(userRepo.save(user));
+    }
+
+    public String login(String username, String password) {
+        User user = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return jwtTokenProvider.generateToken(username);
     }
 
     public List<UserDTO> findAll() {

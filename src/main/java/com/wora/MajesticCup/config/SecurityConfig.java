@@ -1,7 +1,7 @@
 package com.wora.MajesticCup.config;
 
 import com.wora.MajesticCup.security.JwtAuthenticationFilter;
-import com.wora.MajesticCup.security.JwtAuthorizationFilter;
+//import com.wora.MajesticCup.security.JwtAuthorizationFilter;
 import com.wora.MajesticCup.services.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class SecurityConfig {
 
     private final UserServiceImpl userServiceImpl;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final JwtAuthorizationFilter jwtAuthorizationFilter;
+//    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final UserDetailsService userDetailsService;
 
 
@@ -36,7 +36,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/operator/**").hasRole("OPERATOR")
                         .anyRequest().authenticated()).

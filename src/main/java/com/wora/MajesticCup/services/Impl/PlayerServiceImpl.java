@@ -7,7 +7,6 @@ import com.wora.MajesticCup.entities.Player;
 import com.wora.MajesticCup.exceptions.EntityNotFoundException;
 import com.wora.MajesticCup.mappers.PlayerMapper;
 import com.wora.MajesticCup.repositories.PlayerRepository;
-import com.wora.MajesticCup.repositories.TeamRepository;
 import com.wora.MajesticCup.services.Intr.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
