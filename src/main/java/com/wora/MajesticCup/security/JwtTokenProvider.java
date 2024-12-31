@@ -3,10 +3,11 @@ package com.wora.MajesticCup.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
@@ -14,8 +15,20 @@ import java.util.function.Function;
 @Component
 public class JwtTokenProvider {
 
-    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private final long EXPIRATION_TIME = 86400000L;
+
+    private Key generateSecretKey() {
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA512");
+            keyGenerator.init(512);
+            SecretKey secretKey = keyGenerator.generateKey();
+            return secretKey;
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating secret key", e);
+        }
+    }
+
+    private final Key SECRET_KEY = generateSecretKey();
 
     public String generateToken(String username) {
         return Jwts.builder()

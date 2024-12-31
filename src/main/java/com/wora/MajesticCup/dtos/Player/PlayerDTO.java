@@ -1,4 +1,5 @@
 package com.wora.MajesticCup.dtos.Player;
+import com.wora.MajesticCup.entities.Team;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -14,5 +15,8 @@ public class PlayerDTO {
     private String name;
     @NotNull
     private String position;
+    @NotNull
     private int number;
+//    @NotNull
+//    private Team team;
 }

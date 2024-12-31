@@ -15,5 +15,6 @@ public class Player {
     private String name;
     private String position;
     private int number;
+    private Team team;
 }
 

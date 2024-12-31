@@ -3,7 +3,6 @@ package com.wora.MajesticCup.config;
 import com.wora.MajesticCup.security.JwtAuthenticationFilter;
 //import com.wora.MajesticCup.security.JwtAuthorizationFilter;
 import com.wora.MajesticCup.security.JwtTokenProvider;
-import com.wora.MajesticCup.services.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -26,7 +26,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserServiceImpl userServiceImpl;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 //    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final UserDetailsService userDetailsService;
@@ -38,15 +37,25 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/operator/**").hasRole("OPERATOR")
-                        .anyRequest().authenticated()).
-                httpBasic(Customizer.withDefaults())
-                .addFilterBefore(new JwtAuthenticationFilter(JwtTokenProvider,userDetailsService),UsernamePasswordAuthenticationFilter.class);
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults())
+                .addFilterBefore(new JwtAuthenticationFilter(JwtTokenProvider, userDetailsService), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
+
+//    @Bean
+//    public AccessDeniedHandler accessDeniedHandler() {
+//        return (request, response, accessDeniedException) -> {
+//            response.setStatus(403);
+//            response.getWriter().write("Accès refusé : vous n'avez pas les autorisations nécessaires.");
+//        };
+//    }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -68,8 +77,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/auth/login", "/auth/register");
-    }
 }

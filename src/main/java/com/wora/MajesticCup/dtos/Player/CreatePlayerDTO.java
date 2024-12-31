@@ -13,4 +13,5 @@ public class CreatePlayerDTO {
     @NotNull
     private String position;
     private int number;
+    private String teamId;
 }

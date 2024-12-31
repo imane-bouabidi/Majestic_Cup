@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/majestic
+      uri: mongodb://localhost:27017/majestic1
 
 logging:
   level:

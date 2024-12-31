@@ -4,9 +4,11 @@ import com.wora.MajesticCup.dtos.Player.CreatePlayerDTO;
 import com.wora.MajesticCup.dtos.Player.UpdatePlayerDTO;
 import com.wora.MajesticCup.dtos.Player.PlayerDTO;
 import com.wora.MajesticCup.entities.Player;
+import com.wora.MajesticCup.entities.Team;
 import com.wora.MajesticCup.exceptions.EntityNotFoundException;
 import com.wora.MajesticCup.mappers.PlayerMapper;
 import com.wora.MajesticCup.repositories.PlayerRepository;
+import com.wora.MajesticCup.repositories.TeamRepository;
 import com.wora.MajesticCup.services.Intr.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,12 @@ import java.util.List;
 public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
     private final PlayerMapper playerMapper;
+    private final TeamRepository teamRepository;
 
     @Override
     public PlayerDTO save(CreatePlayerDTO createPlayerDTO) {
         Player player = playerMapper.toEntity(createPlayerDTO);
+        Team team = teamRepository.findById(createPlayerDTO.getTeamId()).orElseThrow(()->new EntityNotFoundException("Team not found"));
         Player savedPlayer = playerRepository.save(player);
         return playerMapper.toDTO(savedPlayer);
     }
