@@ -50,7 +50,7 @@ public class AdminController {
     @DeleteMapping("/competitions/{id}")
     public ResponseEntity<String> deleteCompetition(@PathVariable String id) {
         competitionService.delete(id);
-        return ResponseEntity.ok("COMPETITION WITH ID: " + id + " DELETED SUCCESSFULLY !!");
+        return ResponseEntity.ok("supprimé");
     }
 
     @PostMapping("/teams")
@@ -74,7 +74,7 @@ public class AdminController {
     @DeleteMapping("/teams/{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable String id) {
         teamService.delete(id);
-        return ResponseEntity.ok("TEAM WITH ID: " + id + " DELETED SUCCESSFULLY !!");
+        return ResponseEntity.ok("supprimé");
     }
 
     @PostMapping("/players")
@@ -99,7 +99,7 @@ public class AdminController {
     @DeleteMapping("/players/{id}")
     public ResponseEntity<String> deletePlayer(@PathVariable String id) {
         playerService.delete(id);
-        return ResponseEntity.ok("PLAYER WITH ID: " + id + " DELETED SUCCESSFULLY !!");
+        return ResponseEntity.ok("supprimé");
     }
 
     @PostMapping("/results")
